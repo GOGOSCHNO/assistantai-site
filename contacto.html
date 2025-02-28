@@ -8,75 +8,74 @@
   <link rel="icon" href="https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/logoAAI.png" type="image/x-icon">
   <link rel="shortcut icon" href="https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/logoAAI.png" type="image/x-icon">
   <style>
-    /* Restablecimiento rápido */
+    /* Réinitialisation globale */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
-
     body {
+      background: url("https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/galaxia.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      min-height: 100vh;
+    }
+    /* Overlay uniforme */
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-      color: #333;
     }
-
-    header {
-      background: #4A90E2;
+    /* Conteneur centré avec largeur maximale */
+    .container {
+      flex: 1;
+      max-width: 1000px;
+      margin: 0 auto;
       padding: 2rem 1.5rem;
-      text-align: center;
-      color: #fff;
     }
-
+    header, main, footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+    }
+    header {
+      background: transparent;
+    }
     header h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 0.5rem;
     }
-
     header p {
-      font-size: 1rem;
-      opacity: 0.9;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
     }
-
     main {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem 1rem;
-      background: #f6f8fa;
-      text-align: center;
+      margin-top: 10%;
     }
-
     main h2 {
-      font-size: 1.8rem;
+      font-size: 2rem;
       margin-bottom: 1rem;
     }
-
     main p {
-      font-size: 1rem;
-      max-width: 600px;
+      font-size: 1.1rem;
+      max-width: 800px;
       margin: 0 auto 1.5rem auto;
       line-height: 1.5;
     }
-
     .contact-info {
       text-align: left;
       max-width: 600px;
       margin: 0 auto 1.5rem auto;
-      font-size: 1rem;
+      font-size: 1.1rem;
       line-height: 1.5;
       list-style-type: none;
       padding-left: 0;
     }
-
     .contact-info li {
       margin-bottom: 0.5rem;
     }
-
     .cta-button {
       display: inline-block;
       background: #4A90E2;
@@ -85,51 +84,46 @@
       padding: 0.75rem 1.5rem;
       border-radius: 4px;
       transition: background 0.3s ease;
+      font-size: 1rem;
     }
-
     .cta-button:hover {
       background: #3b78b9;
     }
-
     footer {
+      background: rgba(0, 0, 0, 0.7);
       text-align: center;
       padding: 1rem;
       font-size: 0.85rem;
-      background: #e9ecef;
+    }
+    a {
+      color: #fff;
     }
   </style>
 </head>
 <body>
-
-  <!-- Encabezado del sitio -->
-  <header>
-    <h1>AssistantAI</h1>
-    <p>Chatbots & Soluciones de IA para tu negocio</p>
-  </header>
-
-  <!-- Contenido principal -->
-  <main>
-    <h2>Información de Contacto</h2>
-    <p>En AssistantAI creemos en la transparencia y la comunicación directa. A continuación, te ofrecemos nuestros datos de contacto para que puedas comunicarte con nosotros de forma clara y sencilla.</p>
-    
-    <ul class="contact-info">
-      <li><strong>Correo Electrónico:</strong> assistantai@assistantai.site</li>
-      <li><strong>Teléfono:</strong> +57 300 9016472</li>
-      <li><strong>Dirección:</strong> Carrera 48 #76-81, Barranquilla, Colombia</li>
-      <li><strong>Sitio Web:</strong> <a href="https://assistantai.site" target="_blank">www.assistantai.site</a></li>
-    </ul>
-
-    <p>Si tienes alguna consulta o necesitas más información, no dudes en ponerte en contacto con nosotros. Estamos aquí para ayudarte.</p>
-    
-    <a href="mailto:assistantai@assistantai.site" class="cta-button">Enviar Correo</a>
-  </main>
-
-  <!-- Pie de página -->
-  <footer>
-    &copy; 2025 AssistantAI – Todos los derechos reservados.
-    <br/>
-    <a href="politica-de-privacidad.html" target="_blank">Política de Privacidad</a>
-  </footer>
-
+  <div class="overlay">
+    <div class="container">
+      <header>
+        <h1>AssistantAI</h1>
+        <p>Chatbots & Soluciones de IA para tu negocio</p>
+      </header>
+      <main>
+        <h2>Información de Contacto</h2>
+        <p>En AssistantAI creemos en la transparencia y la comunicación directa. A continuación, te ofrecemos nuestros datos de contacto para que puedas comunicarte con nosotros de forma clara y sencilla.</p>
+        <ul class="contact-info">
+          <li><strong>Correo Electrónico:</strong> assistantai@assistantai.site</li>
+          <li><strong>Teléfono:</strong> +57 300 9016472</li>
+          <li><strong>Dirección:</strong> Carrera 48 #76-81, Barranquilla, Colombia</li>
+          <li><strong>Sitio Web:</strong> <a href="https://assistantai.site" target="_blank">www.assistantai.site</a></li>
+        </ul>
+        <a href="mailto:assistantai@assistantai.site" class="cta-button">Enviar Correo</a>
+      </main>
+      <footer>
+        &copy; 2025 AssistantAI – Todos los derechos reservados.
+        <br/>
+        <a href="politica-de-privacidad.html" target="_blank">Política de Privacidad</a>
+      </footer>
+    </div>
+  </div>
 </body>
 </html>
