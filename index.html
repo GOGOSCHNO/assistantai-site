@@ -20,34 +20,43 @@
       background: url("https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/galaxia.jpg") no-repeat center center fixed;
       background-size: cover;
       color: #fff;
-      display: flex;
-      flex-direction: column;
       min-height: 100vh;
     }
-    /* Conteneur unique avec overlay sombre */
-    .container {
+    /* Conteneur avec overlay uniforme */
+    .overlay {
       background: rgba(0, 0, 0, 0.6);
-      flex: 1;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
+    }
+    header, main, footer {
+      padding: 2rem 1.5rem;
       text-align: center;
     }
-    h1 {
+    /* Le header garde sa structure mais avec un fond transparent pour se fondre dans l'overlay */
+    header {
+      background: transparent;
+    }
+    header h1 {
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
     }
-    p {
+    header p {
       font-size: 1.1rem;
       margin-bottom: 1.5rem;
-      max-width: 800px;
-      line-height: 1.5;
     }
-    h2 {
+    main {
+      flex: 1;
+    }
+    main h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
+    }
+    main p {
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto 1.5rem auto;
+      line-height: 1.5;
     }
     .cta-button {
       display: inline-block;
@@ -74,17 +83,21 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>AssistantAI</h1>
-    <p>Chatbots & Soluciones de IA para tu negocio</p>
-    <h2>Mejora la interacción con tus clientes</h2>
-    <p>Desarrollamos agentes conversacionales para automatizar la atención al cliente y ofrecer una experiencia fácil. Benefíciate de una solución rápida, adaptada a tus necesidades y escalable gracias a la inteligencia artificial.</p>
-    <a href="contacto.html" class="cta-button">Contáctanos</a>
+  <div class="overlay">
+    <header>
+      <h1>AssistantAI</h1>
+      <p>Chatbots & Soluciones de IA para tu negocio</p>
+    </header>
+    <main>
+      <h2>Mejora la interacción con tus clientes</h2>
+      <p>Desarrollamos agentes conversacionales para automatizar la atención al cliente y ofrecer una experiencia fácil. Benefíciate de una solución rápida, adaptada a tus necesidades y escalable gracias a la inteligencia artificial.</p>
+      <a href="contacto.html" class="cta-button">Contáctanos</a>
+    </main>
+    <footer>
+      &copy; 2025 AssistantAI – Todos los derechos reservados.
+      <br/>
+      <a href="politica-de-privacidad.html" target="_blank">Política de Privacidad</a>
+    </footer>
   </div>
-  <footer>
-    &copy; 2025 AssistantAI – Todos los derechos reservados.
-    <br/>
-    <a href="politica-de-privacidad.html" target="_blank">Política de Privacidad</a>
-  </footer>
 </body>
 </html>
