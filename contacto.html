@@ -7,6 +7,7 @@
   <!-- Favicon -->
   <link rel="icon" href="https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/logoAAI.png" type="image/x-icon">
   <link rel="shortcut icon" href="https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/logoAAI.png" type="image/x-icon">
+
   <style>
     /* Réinitialisation globale */
     * {
@@ -28,16 +29,9 @@
       display: flex;
       flex-direction: column;
     }
-    /* Conteneur centré avec largeur maximale */
-    .container {
-      flex: 1;
-      max-width: 1000px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
-    }
     header, main, footer {
-      text-align: center;
       padding: 2rem 1.5rem;
+      text-align: center;
     }
     header {
       background: transparent;
@@ -51,8 +45,8 @@
       margin-bottom: 1.5rem;
     }
     main {
-      flex: 1;
       margin-top: 10%;
+      flex: 1;
     }
     main h2 {
       font-size: 2rem;
@@ -66,12 +60,12 @@
     }
     .contact-info {
       text-align: left;
-      max-width: 600px;
+      max-width: 800px;
       margin: 0 auto 1.5rem auto;
       font-size: 1.1rem;
       line-height: 1.5;
-      list-style-type: none;
-      padding-left: 0;
+      list-style: none;
+      padding: 0;
     }
     .contact-info li {
       margin-bottom: 0.5rem;
@@ -90,10 +84,10 @@
       background: #3b78b9;
     }
     footer {
-      background: rgba(0, 0, 0, 0.7);
       text-align: center;
       padding: 1rem;
       font-size: 0.85rem;
+      background: rgba(0, 0, 0, 0.7);
     }
     a {
       color: #fff;
@@ -102,28 +96,29 @@
 </head>
 <body>
   <div class="overlay">
-    <div class="container">
-      <header>
-        <h1>AssistantAI</h1>
-        <p>Chatbots & Soluciones de IA para tu negocio</p>
-      </header>
-      <main>
-        <h2>Información de Contacto</h2>
-        <p>En AssistantAI creemos en la transparencia y la comunicación directa. A continuación, te ofrecemos nuestros datos de contacto para que puedas comunicarte con nosotros de forma clara y sencilla.</p>
-        <ul class="contact-info">
-          <li><strong>Correo Electrónico:</strong> assistantai@assistantai.site</li>
-          <li><strong>Teléfono:</strong> +57 300 9016472</li>
-          <li><strong>Dirección:</strong> Carrera 48 #76-81, Barranquilla, Colombia</li>
-          <li><strong>Sitio Web:</strong> <a href="https://assistantai.site" target="_blank">www.assistantai.site</a></li>
-        </ul>
-        <a href="mailto:assistantai@assistantai.site" class="cta-button">Enviar Correo</a>
-      </main>
-      <footer>
-        &copy; 2025 AssistantAI – Todos los derechos reservados.
-        <br/>
-        <a href="politica-de-privacidad.html" target="_blank">Política de Privacidad</a>
-      </footer>
-    </div>
+    <header>
+      <h1>AssistantAI</h1>
+      <p>Chatbots & Soluciones de IA para tu negocio</p>
+    </header>
+    <main>
+      <h2>Información de Contacto</h2>
+      <p>En AssistantAI creemos en la transparencia y la comunicación directa. A continuación, te ofrecemos nuestros datos de contacto para que puedas comunicarte con nosotros de forma clara y sencilla.</p>
+      
+      <ul class="contact-info">
+        <li><strong>Correo Electrónico:</strong> assistantai@assistantai.site</li>
+        <li><strong>Teléfono:</strong> +57 300 9016472</li>
+        <li><strong>Dirección:</strong> Carrera 48 #76-81, Barranquilla, Colombia</li>
+        <li><strong>Sitio Web:</strong> <a href="https://assistantai.site" target="_blank">www.assistantai.site</a></li>
+      </ul>
+      
+      <p>Si tienes alguna consulta o necesitas más información, no dudes en ponerte en contacto con nosotros.</p>
+      
+      <a href="mailto:assistantai@assistantai.site" class="cta-button">Enviar Correo</a>
+    </main>
+    <footer>
+      &copy; 2025 AssistantAI – Todos los derechos reservados.<br/>
+      <a href="politica-de-privacidad.html" target="_blank">Política de Privacidad</a>
+    </footer>
   </div>
 </body>
 </html>
