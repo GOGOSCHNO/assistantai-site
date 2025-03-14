@@ -2,76 +2,84 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Política de Privacidad – AssistantAI</title>
+  <title>AssistantAI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Favicon -->
-  <link rel="icon" href="https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/logoAAI.png" type="image/x-icon">
-  <link rel="shortcut icon" href="https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/logoAAI.png" type="image/x-icon">
+  <link rel="icon" href="https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/images/favicon%20(2).png" type="image/x-icon">
+  <link rel="shortcut icon" href="https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/images/favicon%20(2).png" type="image/x-icon">
 
-  <!-- Estilos básicos en CSS (reprendiendo la misma paleta que en index.html) -->
   <style>
-    /* Restablecimiento rápido */
+    /* Réinitialisation globale */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: Arial, sans-serif;
     }
-
     body {
+      background: url("https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/images/galaxia.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      min-height: 100vh;
+    }
+    /* Conteneur avec overlay uniforme */
+    .overlay {
+      background: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
-      color: #333;
     }
-
-    header {
-      background: #4A90E2;
+    header, main, footer {
       padding: 2rem 1.5rem;
       text-align: center;
-      color: #fff;
     }
-
+    /* Le header garde sa structure mais avec un fond transparent pour se fondre dans l'overlay */
+    header {
+      background: transparent;
+    }
     header h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       margin-bottom: 0.5rem;
     }
-
     header p {
-      font-size: 1rem;
-      opacity: 0.9;
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
     }
-
     main {
+      margin-top: 10%;
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 2rem 1rem;
-      background: #f6f8fa;
-      text-align: left;
-      max-width: 800px;
-      margin: 0 auto;
     }
-
     main h2 {
-      font-size: 1.8rem;
+      font-size: 2rem;
       margin-bottom: 1rem;
-      text-align: center;
     }
-
     main p {
-      font-size: 1rem;
-      margin-bottom: 1.2rem;
-      line-height: 1.6;
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: 0 auto 1.5rem auto;
+      line-height: 1.5;
     }
-
+    .cta-button {
+      display: inline-block;
+      background: #4A90E2;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      transition: background 0.3s ease;
+      font-size: 1rem;
+    }
+    .cta-button:hover {
+      background: #3b78b9;
+    }
     footer {
       text-align: center;
       padding: 1rem;
       font-size: 0.85rem;
-      background: #e9ecef;
+      background: rgba(0, 0, 0, 0.7);
+    }
+    a {
+      color: #fff;
     }
   </style>
 </head>
