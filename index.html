@@ -150,6 +150,25 @@
     </footer>
   </div>
       <script>
+      document.getElementById("formularioPrueba").addEventListener("submit", async function(event) {
+          event.preventDefault();
+      
+          const formData = new FormData(this);
+      
+          try {
+              const response = await fetch("https://bossassistantai-439c88409c33.herokuapp.com/api/trial", {
+                  method: "POST",
+                  body: formData
+              });
+      
+              const result = await response.json();
+              alert(result.message);  // Afficher un message de confirmation
+      
+          } catch (error) {
+              console.error("Error al enviar la solicitud:", error);
+              alert("Hubo un error al procesar tu solicitud. Inténtalo de nuevo.");
+          }
+      });
       document.getElementById("probarGratisBtn").addEventListener("click", function() {
         var form = document.getElementById("pruebaGratisForm");
         if (form.style.display === "none") {
