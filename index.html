@@ -159,7 +159,7 @@
     document.addEventListener("DOMContentLoaded", function() {
         const input = document.querySelector("#telefono");
         const iti = window.intlTelInput(input, {
-            separateDialCode: true,  // Affiche le code du pays séparément
+            separateDialCode: true,  // Affiche le code pays séparément
             initialCountry: "auto",  // Détecte le pays de l'utilisateur
             geoIpLookup: function(callback) {
                 fetch('https://ipapi.co/json')
@@ -167,23 +167,31 @@
                     .then(data => callback(data.country_code))
                     .catch(() => callback("us"));
             },
-            preferredCountries: ["co", "fr", "us", "es", "br"], // Pays préférés en haut de la liste
+            preferredCountries: ["co", "fr", "us", "es", "br"], // Priorité aux pays ciblés
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
         });
   
+        // 📌 Gestion du bouton pour afficher/masquer le formulaire
+        document.getElementById("probarGratisBtn").addEventListener("click", function() {
+            var form = document.getElementById("pruebaGratisForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
+        });
+  
+        // 📌 Gestion de la soumission du formulaire
         document.getElementById("formularioPrueba").addEventListener("submit", async function(event) {
             event.preventDefault();
   
             const formData = new FormData(this);
   
-            // 📌 Récupérer le numéro formaté avec l'indicatif
-            const numeroCompleto = iti.getNumber(); // Retourne +573009016472
+            // 📌 Récupérer et formater le numéro avec indicatif
+            const numeroCompleto = iti.getNumber(); // Exemple: +573009016472
             formData.set("whatsapp", numeroCompleto);
+            formData.delete("telefono"); // Supprimer "telefono" car on envoie "whatsapp"
   
             // 📌 Masquer immédiatement le formulaire
             document.getElementById("pruebaGratisForm").style.display = "none";
   
-            // 📌 Afficher le message de confirmation immédiatement
+            // 📌 Afficher un message de confirmation immédiatement
             const mensajeFelicitacion = document.createElement("div");
             mensajeFelicitacion.innerHTML = `
                 <h2>🎉 ¡Felicidades, ${formData.get("nombre_comercio")}! 🚀</h2>
