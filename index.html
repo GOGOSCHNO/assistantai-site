@@ -152,46 +152,43 @@
   <script>
     document.getElementById("formularioPrueba").addEventListener("submit", async function(event) {
         event.preventDefault();
-    
+  
         const formData = new FormData(this);
-    
-        try {
-            const response = await fetch("https://bossassistantai-439c88409c33.herokuapp.com/api/inscription", {
-                method: "POST",
-                body: formData
-            });
+        const nombreComercio = formData.get("nombre_comercio");
+        const email = formData.get("email");
+        const whatsapp = formData.get("whatsapp");
   
-            // 📌 Vérifier si la réponse est correcte
-            if (!response.ok) {
-                throw new Error(`Erreur HTTP ${response.status}: ${response.statusText}`);
-            }
+        // 📌 Masquer immédiatement le formulaire
+        document.getElementById("pruebaGratisForm").style.display = "none";
   
-            const result = await response.json();
+        // 📌 Afficher le message de confirmation instantanément
+        const mensajeFelicitacion = document.createElement("div");
+        mensajeFelicitacion.innerHTML = `
+            <h2>🎉 ¡Felicidades, ${nombreComercio}! 🚀</h2>
+            <p>Tu asistente está en proceso de creación. Te contactaremos pronto.</p>
+            <p>📩 Hemos enviado un mensaje de confirmación a:</p>
+            <p><strong>Email:</strong> ${email}</p>
+            <p><strong>WhatsApp:</strong> ${whatsapp}</p>
+            <p>Si cometiste un error en los datos, por favor vuelve a intentarlo.</p>
+        `;
+        mensajeFelicitacion.style.textAlign = "center";
+        mensajeFelicitacion.style.marginTop = "20px";
+        mensajeFelicitacion.style.padding = "20px";
+        mensajeFelicitacion.style.background = "rgba(255,255,255,0.9)";
+        mensajeFelicitacion.style.color = "#000";
+        mensajeFelicitacion.style.borderRadius = "8px";
+        mensajeFelicitacion.style.maxWidth = "500px";
+        mensajeFelicitacion.style.margin = "20px auto";
   
-            // 📌 Masquer le formulaire après l'envoi
-            document.getElementById("pruebaGratisForm").style.display = "none";
+        document.querySelector("main").appendChild(mensajeFelicitacion);
   
-            // 📌 Afficher un message de félicitations
-            const mensajeFelicitacion = document.createElement("div");
-            mensajeFelicitacion.innerHTML = `
-                <h2>🎉 ¡Felicidades, ${formData.get("nombre_comercio")}! 🚀</h2>
-                <p>Tu asistente está en proceso de creación. Te contactaremos pronto.</p>
-            `;
-            mensajeFelicitacion.style.textAlign = "center";
-            mensajeFelicitacion.style.marginTop = "20px";
-            mensajeFelicitacion.style.padding = "20px";
-            mensajeFelicitacion.style.background = "rgba(255,255,255,0.9)";
-            mensajeFelicitacion.style.color = "#000";
-            mensajeFelicitacion.style.borderRadius = "8px";
-            mensajeFelicitacion.style.maxWidth = "500px";
-            mensajeFelicitacion.style.margin = "20px auto";
-  
-            document.querySelector("main").appendChild(mensajeFelicitacion);
-  
-        } catch (error) {
+        // 📌 Envoyer les données au backend sans attendre la réponse
+        fetch("https://bossassistantai-439c88409c33.herokuapp.com/api/inscription", {
+            method: "POST",
+            body: formData
+        }).catch(error => {
             console.error("❌ Error al enviar la solicitud:", error);
-            alert("Hubo un error al procesar tu solicitud. Inténtalo de nuevo.");
-        }
+        });
     });
   
     document.getElementById("probarGratisBtn").addEventListener("click", function() {
