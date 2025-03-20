@@ -156,6 +156,11 @@
     </footer>
   </div>
   <script>
+    // 📌 Gestion du bouton pour afficher/masquer le formulaire
+    document.getElementById("probarGratisBtn").addEventListener("click", function() {
+        var form = document.getElementById("pruebaGratisForm");
+        form.style.display = form.style.display === "none" ? "block" : "none";
+    });
     document.addEventListener("DOMContentLoaded", function() {
         const input = document.querySelector("#telefono");
         const iti = window.intlTelInput(input, {
@@ -169,12 +174,6 @@
             },
             preferredCountries: ["co", "fr", "us", "es", "br"], // Priorité aux pays ciblés
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
-        });
-  
-        // 📌 Gestion du bouton pour afficher/masquer le formulaire
-        document.getElementById("probarGratisBtn").addEventListener("click", function() {
-            var form = document.getElementById("pruebaGratisForm");
-            form.style.display = form.style.display === "none" ? "block" : "none";
         });
   
         // 📌 Gestion de la soumission du formulaire
