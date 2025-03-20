@@ -8,6 +8,12 @@
   <link rel="icon" href="https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/images/favicon%20(2).png" type="image/x-icon">
   <link rel="shortcut icon" href="https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/images/favicon%20(2).png" type="image/x-icon">
 
+  <!-- Bibliothèque CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.min.css">
+  <!-- Bibliothèque JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
+
+
   <style>
     /* Réinitialisation globale */
     * {
@@ -150,51 +156,65 @@
     </footer>
   </div>
   <script>
-    document.getElementById("formularioPrueba").addEventListener("submit", async function(event) {
-        event.preventDefault();
+    document.addEventListener("DOMContentLoaded", function() {
+        const input = document.querySelector("#telefono");
+        const iti = window.intlTelInput(input, {
+            separateDialCode: true,  // Affiche le code du pays séparément
+            initialCountry: "auto",  // Détecte le pays de l'utilisateur
+            geoIpLookup: function(callback) {
+                fetch('https://ipapi.co/json')
+                    .then(response => response.json())
+                    .then(data => callback(data.country_code))
+                    .catch(() => callback("us"));
+            },
+            preferredCountries: ["co", "fr", "us", "es", "br"], // Pays préférés en haut de la liste
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
+        });
   
-        const formData = new FormData(this);
-        const nombreComercio = formData.get("nombre_comercio");
-        const email = formData.get("email");
-        const whatsapp = formData.get("whatsapp");
+        document.getElementById("formularioPrueba").addEventListener("submit", async function(event) {
+            event.preventDefault();
   
-        // 📌 Masquer immédiatement le formulaire
-        document.getElementById("pruebaGratisForm").style.display = "none";
+            const formData = new FormData(this);
   
-        // 📌 Afficher le message de confirmation instantanément
-        const mensajeFelicitacion = document.createElement("div");
-        mensajeFelicitacion.innerHTML = `
-            <h2>🎉 ¡Felicidades, ${nombreComercio}! 🚀</h2>
-            <p>Tu asistente está en proceso de creación. Te contactaremos pronto.</p>
-            <p>📩 Hemos enviado un mensaje de confirmación a:</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>WhatsApp:</strong> ${whatsapp}</p>
-            <p>Si cometiste un error en los datos, por favor vuelve a intentarlo.</p>
-        `;
-        mensajeFelicitacion.style.textAlign = "center";
-        mensajeFelicitacion.style.marginTop = "20px";
-        mensajeFelicitacion.style.padding = "20px";
-        mensajeFelicitacion.style.background = "rgba(255,255,255,0.9)";
-        mensajeFelicitacion.style.color = "#000";
-        mensajeFelicitacion.style.borderRadius = "8px";
-        mensajeFelicitacion.style.maxWidth = "500px";
-        mensajeFelicitacion.style.margin = "20px auto";
+            // 📌 Récupérer le numéro formaté avec l'indicatif
+            const numeroCompleto = iti.getNumber(); // Retourne +573009016472
+            formData.set("whatsapp", numeroCompleto);
   
-        document.querySelector("main").appendChild(mensajeFelicitacion);
+            // 📌 Masquer immédiatement le formulaire
+            document.getElementById("pruebaGratisForm").style.display = "none";
   
-        // 📌 Envoyer les données au backend sans attendre la réponse
-        fetch("https://bossassistantai-439c88409c33.herokuapp.com/api/inscription", {
-            method: "POST",
-            body: formData
-        }).catch(error => {
-            console.error("❌ Error al enviar la solicitud:", error);
+            // 📌 Afficher le message de confirmation immédiatement
+            const mensajeFelicitacion = document.createElement("div");
+            mensajeFelicitacion.innerHTML = `
+                <h2>🎉 ¡Felicidades, ${formData.get("nombre_comercio")}! 🚀</h2>
+                <p>Tu asistente está en proceso de creación. Te contactaremos pronto.</p>
+                <p>📩 Hemos enviado un mensaje de confirmación a:</p>
+                <p><strong>Email:</strong> ${formData.get("email")}</p>
+                <p><strong>WhatsApp:</strong> ${numeroCompleto}</p>
+                <p>Si cometiste un error en los datos, por favor vuelve a intentarlo.</p>
+            `;
+            mensajeFelicitacion.style.textAlign = "center";
+            mensajeFelicitacion.style.marginTop = "20px";
+            mensajeFelicitacion.style.padding = "20px";
+            mensajeFelicitacion.style.background = "rgba(255,255,255,0.9)";
+            mensajeFelicitacion.style.color = "#000";
+            mensajeFelicitacion.style.borderRadius = "8px";
+            mensajeFelicitacion.style.maxWidth = "500px";
+            mensajeFelicitacion.style.margin = "20px auto";
+  
+            document.querySelector("main").appendChild(mensajeFelicitacion);
+  
+            // 📌 Envoyer les données au backend sans attendre la réponse
+            fetch("https://bossassistantai-439c88409c33.herokuapp.com/api/inscription", {
+                method: "POST",
+                body: formData
+            }).catch(error => {
+                console.error("❌ Error al enviar la solicitud:", error);
+            });
         });
     });
-  
-    document.getElementById("probarGratisBtn").addEventListener("click", function() {
-        var form = document.getElementById("pruebaGratisForm");
-        form.style.display = form.style.display === "none" ? "block" : "none";
-    });
   </script>
+  <!-- Bibliothèque JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
 </body>
 </html>
