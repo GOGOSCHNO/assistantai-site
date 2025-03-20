@@ -177,6 +177,10 @@
             preferredCountries: ["co", "fr", "us", "es", "br"], // Priorité aux pays ciblés
             utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
         });
+        // 📌 Empêcher la liste complète de s'afficher par défaut
+        input.addEventListener("click", function() {
+            iti.setCountry(iti.getSelectedCountryData().iso2);
+        });
   
         // 📌 Gestion de la soumission du formulaire
         document.getElementById("formularioPrueba").addEventListener("submit", async function(event) {
