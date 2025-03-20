@@ -8,12 +8,6 @@
   <link rel="icon" href="https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/images/favicon%20(2).png" type="image/x-icon">
   <link rel="shortcut icon" href="https://raw.githubusercontent.com/GOGOSCHNO/assistantai-site/refs/heads/main/images/favicon%20(2).png" type="image/x-icon">
 
-  <!-- Bibliothèque CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.min.css">
-  <!-- Bibliothèque JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
-
-
   <style>
     /* Réinitialisation globale */
     * {
@@ -158,31 +152,13 @@
       <a href="politica-de-privacidad.html" target="_blank">Política de Privacidad</a>
     </footer>
   </div>
-  <!-- Bibliothèque JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
   <script>
-    // 📌 Gestion du bouton pour afficher/masquer le formulaire
-    document.getElementById("probarGratisBtn").addEventListener("click", function() {
-        var form = document.getElementById("pruebaGratisForm");
-        form.style.display = form.style.display === "none" ? "block" : "none";
-    });
     document.addEventListener("DOMContentLoaded", function() {
-        const input = document.querySelector("#telefono");
-        const iti = window.intlTelInput(input, {
-            separateDialCode: true,  // Affiche le code pays séparément
-            initialCountry: "auto",  // Détecte le pays de l'utilisateur
-            geoIpLookup: function(callback) {
-                fetch('https://ipapi.co/json')
-                    .then(response => response.json())
-                    .then(data => callback(data.country_code))
-                    .catch(() => callback("us"));
-            },
-            preferredCountries: ["co", "fr", "us", "es", "br"], // Priorité aux pays ciblés
-            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/utils.js"
-        });
-        // 📌 Empêcher la liste complète de s'afficher par défaut
-        input.addEventListener("click", function() {
-            iti.setCountry(iti.getSelectedCountryData().iso2);
+  
+        // 📌 Gestion du bouton pour afficher/masquer le formulaire
+        document.getElementById("probarGratisBtn").addEventListener("click", function() {
+            var form = document.getElementById("pruebaGratisForm");
+            form.style.display = form.style.display === "none" ? "block" : "none";
         });
   
         // 📌 Gestion de la soumission du formulaire
@@ -191,10 +167,20 @@
   
             const formData = new FormData(this);
   
-            // 📌 Récupérer et formater le numéro avec indicatif
-            const numeroCompleto = iti.getNumber(); // Exemple: +573009016472
-            formData.set("whatsapp", numeroCompleto);
-            formData.delete("telefono"); // Supprimer "telefono" car on envoie "whatsapp"
+            // 📌 Récupérer l'indicatif et le numéro
+            let indicativo = document.getElementById("indicativo").value.trim();
+            let numero = document.getElementById("numero").value.trim();
+  
+            // 📌 Vérifier si l'indicatif commence par "+"
+            if (!indicativo.startsWith("+")) {
+                indicativo = "+" + indicativo; // Ajoute le "+" si absent
+            }
+  
+            // 📌 Fusionner les deux pour obtenir un numéro complet
+            const numeroCompleto = indicativo + numero;
+            formData.set("whatsapp", numeroCompleto); // Envoie au backend sous "whatsapp"
+            formData.delete("indicativo"); // Supprimer le champ "indicativo" (inutile pour le backend)
+            formData.delete("numero"); // Supprimer le champ "numero" (inutile pour le backend)
   
             // 📌 Masquer immédiatement le formulaire
             document.getElementById("pruebaGratisForm").style.display = "none";
