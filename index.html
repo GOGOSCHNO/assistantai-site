@@ -161,6 +161,11 @@
                 body: formData
             });
   
+            // 📌 Vérifier si la réponse est correcte
+            if (!response.ok) {
+                throw new Error(`Erreur HTTP ${response.status}: ${response.statusText}`);
+            }
+  
             const result = await response.json();
   
             // 📌 Masquer le formulaire après l'envoi
@@ -184,7 +189,7 @@
             document.querySelector("main").appendChild(mensajeFelicitacion);
   
         } catch (error) {
-            console.error("Error al enviar la solicitud:", error);
+            console.error("❌ Error al enviar la solicitud:", error);
             alert("Hubo un error al procesar tu solicitud. Inténtalo de nuevo.");
         }
     });
