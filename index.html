@@ -81,6 +81,72 @@
     a {
       color: #fff;
     }
+    /* 📌 Amélioration du style du formulaire */
+    #pruebaGratisForm {
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 8px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        text-align: left;
+        color: #333;
+    }
+    
+    #pruebaGratisForm h2 {
+        text-align: center;
+        color: #4A90E2;
+        margin-bottom: 15px;
+    }
+    
+    /* 📌 Espacement des labels et inputs */
+    #pruebaGratisForm label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+        font-size: 14px;
+    }
+    
+    #pruebaGratisForm input,
+    #pruebaGratisForm select,
+    #pruebaGratisForm textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+    
+    /* 📌 Champs en ligne pour indicatif et téléphone */
+    .whatsapp-container {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .whatsapp-container input {
+        flex: 1;
+    }
+    
+    /* 📌 Bouton stylisé */
+    #pruebaGratisForm button {
+        background: #4A90E2;
+        color: white;
+        border: none;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        border-radius: 5px;
+        width: 100%;
+        margin-top: 15px;
+        transition: background 0.3s ease;
+    }
+    
+    #pruebaGratisForm button:hover {
+        background: #3b78b9;
+    }
   </style>
 </head>
 <body>
@@ -98,54 +164,54 @@
       <p>Desarrollamos agentes conversacionales para automatizar la atención al cliente y ofrecer una experiencia fácil. Benefíciate de una solución rápida, adaptada a tus necesidades y escalable gracias a la inteligencia artificial.</p>
 
     <!-- Formulario de Prueba Gratis -->
-    <div id="pruebaGratisForm" style="display: none; margin-top: 20px; text-align: center;">
-      <h2>Prueba Gratis de AssistantAI 🚀</h2>
-      <p>Descubre cómo un asistente WhatsApp puede mejorar la atención al cliente en tu negocio.</p>
-      <form id="formularioPrueba" style="max-width: 500px; margin: 0 auto; background: rgba(255,255,255,0.9); padding: 20px; border-radius: 8px; color: #000;">
-        <label for="nombre_comercio">Nombre del comercio</label>
-        <input type="text" id="nombre_comercio" name="nombre_comercio" required>
-
-        <label for="sector">Sector de actividad</label>
-        <select id="sector" name="sector" required>
-          <option value="">Selecciona un sector</option>
-          <option value="Belleza">Belleza</option>
-          <option value="Salud">Salud</option>
-          <option value="E-commerce">E-commerce</option>
-          <option value="Restaurantes">Restaurantes</option>
-          <option value="Servicios">Servicios</option>
-          <option value="Otro">Otro</option>
-        </select>
-
-        <label for="indicativo">Indicativo: +</label>
-        <input type="text" id="indicativo" name="indicativo" placeholder="57" required style="width: 50px;" maxlength="4">
-        
-        <label for="numero">Número de WhatsApp:</label>
-        <input type="text" id="numero" name="numero" placeholder="Ej: 3009016472" required>
-
-        <label for="email">Correo electrónico</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="productosServicios">¿Qué productos o servicios ofreces?</label>
-        <textarea id="productosServicios" name="productosServicios" rows="3" required></textarea>
-
-        <label for="objetivo">¿Para qué necesitas el asistente?</label>
-        <select id="objetivo" name="objetivo" required>
-          <option value="">Selecciona una opción</option>
-          <option value="Automatizar respuestas a clientes">Automatizar respuestas a clientes</option>
-          <option value="Recomendar productos o servicios">Recomendar productos o servicios</option>
-          <option value="Gestionar consultas frecuentes">Gestionar consultas frecuentes</option>
-        </select>
-
-        <label for="mensajeAdicional">¿Algo más que debamos saber?</label>
-        <textarea id="mensajeAdicional" name="mensajeAdicional" rows="3"></textarea>
-        
-        <label for="archivo">Adjunta un archivo (opcional)</label>
-        <input type="file" id="archivo" name="archivo">
-        
-        <button type="submit" style="margin-top: 10px;">Crear mi asistente gratuito 🚀</button>
-      </form>
+    <div id="pruebaGratisForm" style="display: none;">
+        <h2>Prueba Gratis de AssistantAI 🚀</h2>
+        <p style="text-align: center;">Descubre cómo un asistente WhatsApp puede mejorar la atención al cliente en tu negocio.</p>
+        <form id="formularioPrueba">
+            <label for="nombre_comercio">Nombre del comercio</label>
+            <input type="text" id="nombre_comercio" name="nombre_comercio" required>
+    
+            <label for="sector">Sector de actividad</label>
+            <select id="sector" name="sector" required>
+                <option value="">Selecciona un sector</option>
+                <option value="Belleza">Belleza</option>
+                <option value="Salud">Salud</option>
+                <option value="E-commerce">E-commerce</option>
+                <option value="Restaurantes">Restaurantes</option>
+                <option value="Servicios">Servicios</option>
+                <option value="Otro">Otro</option>
+            </select>
+    
+            <label for="whatsapp">Número de WhatsApp:</label>
+            <div class="whatsapp-container">
+                <input type="text" id="indicativo" name="indicativo" placeholder="+57" required style="width: 60px;">
+                <input type="text" id="numero" name="numero" placeholder="Ej: 3009016472" required>
+            </div>
+    
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" required>
+    
+            <label for="productosServicios">¿Qué productos o servicios ofreces?</label>
+            <textarea id="productosServicios" name="productosServicios" rows="3" required></textarea>
+    
+            <label for="objetivo">¿Para qué necesitas el asistente?</label>
+            <select id="objetivo" name="objetivo" required>
+                <option value="">Selecciona una opción</option>
+                <option value="Automatizar respuestas a clientes">Automatizar respuestas a clientes</option>
+                <option value="Recomendar productos o servicios">Recomendar productos o servicios</option>
+                <option value="Gestionar consultas frecuentes">Gestionar consultas frecuentes</option>
+            </select>
+    
+            <label for="mensajeAdicional">¿Algo más que debamos saber?</label>
+            <textarea id="mensajeAdicional" name="mensajeAdicional" rows="3"></textarea>
+    
+            <label for="archivo">Adjunta un archivo (opcional)</label>
+            <input type="file" id="archivo" name="archivo">
+    
+            <button type="submit">Crear mi asistente gratuito 🚀</button>
+        </form>
     </div>
-      <a href="#" id="probarGratisBtn" class="cta-button" style="margin-top: 10px;">Probar Gratis 🚀</a>
+    <a href="#" id="probarGratisBtn" class="cta-button" style="margin-top: 10px;">Probar Gratis 🚀</a>
     </main>
     <footer>
       &copy; 2025 AssistantAI – Todos los derechos reservados.
