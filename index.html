@@ -158,9 +158,32 @@
     document.addEventListener("DOMContentLoaded", function() {
   
         // 📌 Gestion du bouton pour afficher/masquer le formulaire
-        document.getElementById("probarGratisBtn").addEventListener("click", function() {
-            var form = document.getElementById("pruebaGratisForm");
-            form.style.display = form.style.display === "none" ? "block" : "none";
+        document.addEventListener("DOMContentLoaded", function() {
+            const btnProbarGratis = document.getElementById("probarGratisBtn");
+            const formContainer = document.getElementById("pruebaGratisForm");
+      
+            btnProbarGratis.addEventListener("click", function() {
+                if (formContainer.style.display === "none" || formContainer.style.opacity === "0") {
+                    // 📌 Afficher le formulaire avec une animation fluide
+                    formContainer.style.display = "block";
+                    setTimeout(() => {
+                        formContainer.style.opacity = "1";
+                        formContainer.style.transform = "translateY(0px)";
+                    }, 50);
+      
+                    // 📌 Faire défiler l'écran jusqu'au formulaire
+                    formContainer.scrollIntoView({ behavior: "smooth" });
+      
+                    // 📌 Cacher le bouton après ouverture
+                    btnProbarGratis.style.display = "none";
+                }
+            });
+      
+            // 📌 Initialisation du formulaire caché avec animation fluide
+            formContainer.style.display = "none";
+            formContainer.style.opacity = "0";
+            formContainer.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+            formContainer.style.transform = "translateY(-20px)";
         });
   
         // 📌 Gestion de la soumission du formulaire
