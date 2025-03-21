@@ -128,7 +128,29 @@
     .whatsapp-container input {
         flex: 1;
     }
+    /* 📌 Liste déroulante pour l'indicatif */
+    #indicativo {
+        width: 90px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
     
+    /* 📌 Champ manuel pour l'indicatif (caché par défaut) */
+    #manualIndicativo {
+        width: 60px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    
+    /* 📌 Champ pour le numéro */
+    #numero {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
     /* 📌 Bouton stylisé */
     #pruebaGratisForm button {
         background: #4A90E2;
@@ -184,8 +206,16 @@
     
             <label for="whatsapp">Número de WhatsApp:</label>
             <div class="whatsapp-container">
-                <input type="text" id="indicativo" name="indicativo" placeholder="+57" required style="width: 60px;">
-                <input type="text" id="numero" name="numero" placeholder="Ej: 3009016472" required>
+              <select id="indicativo" name="indicativo">
+                  <option value="+57" selected>🇨🇴 +57</option>
+                  <option value="+33">🇫🇷 +33</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+34">🇪🇸 +34</option>
+                  <option value="+55">🇧🇷 +55</option>
+                  <option value="manual">Otro (Ingresar manualmente)</option>
+              </select>
+              <input type="text" id="manualIndicativo" name="manualIndicativo" placeholder="+XX" style="display: none; width: 60px;">
+              <input type="text" id="numero" name="numero" placeholder="Ej: 3009016472" required>
             </div>
     
             <label for="email">Correo electrónico</label>
