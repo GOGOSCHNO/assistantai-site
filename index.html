@@ -251,11 +251,13 @@
     </footer>
   </div>
   <script>
-    document.addEventListener("DOMContentLoaded", function() {
-  
+    document.addEventListener("DOMContentLoaded", function () {
         // 📌 Récupération des éléments HTML
         const btnProbarGratis = document.getElementById("probarGratisBtn");
         const formContainer = document.getElementById("pruebaGratisForm");
+        const selectIndicativo = document.getElementById("indicativo");
+        const manualIndicativo = document.getElementById("manualIndicativo");
+        const numeroInput = document.getElementById("numero");
   
         // 📌 Initialisation du formulaire caché avec animation fluide
         formContainer.style.display = "none";
@@ -264,7 +266,7 @@
         formContainer.style.transform = "translateY(-20px)";
   
         // 📌 Gestion du bouton pour afficher le formulaire en douceur
-        btnProbarGratis.addEventListener("click", function() {
+        btnProbarGratis.addEventListener("click", function () {
             if (formContainer.style.display === "none") {
                 formContainer.style.display = "block";
                 setTimeout(() => {
@@ -280,35 +282,51 @@
             }
         });
   
+        // 📌 Afficher le champ manuel si l'utilisateur choisit "Otro"
+        selectIndicativo.addEventListener("change", function () {
+            if (this.value === "manual") {
+                manualIndicativo.style.display = "block";
+                manualIndicativo.focus();
+            } else {
+                manualIndicativo.style.display = "none";
+                manualIndicativo.value = "";
+            }
+        });
+  
         // 📌 Gestion de la soumission du formulaire
-        document.getElementById("formularioPrueba").addEventListener("submit", async function(event) {
+        document.getElementById("formularioPrueba").addEventListener("submit", async function (event) {
             event.preventDefault();
   
             const formData = new FormData(this);
   
             // 📌 Récupérer l'indicatif et le numéro
-            let indicativo = document.getElementById("indicativo").value.trim();
-            let numero = document.getElementById("numero").value.trim();
-  
-            // 📌 Vérifier si l'indicatif commence par "+"
-            if (!indicativo.startsWith("+")) {
-                indicativo = "+" + indicativo;
+            let indicativoSeleccionado = selectIndicativo.value;
+            if (indicativoSeleccionado === "manual" && manualIndicativo.value.trim() !== "") {
+                indicativoSeleccionado = manualIndicativo.value.trim();
             }
   
-            // 📌 Fusionner les deux pour obtenir un numéro complet
-            const numeroCompleto = indicativo + numero;
-            formData.set("whatsapp", numeroCompleto);
-            formData.delete("indicativo");
-            formData.delete("numero");
+            let numero = numeroInput.value.trim();
   
-            // 📌 Masquer immédiatement le formulaire
+            // 📌 Vérifier si l'indicatif commence par "+"
+            if (!indicativoSeleccionado.startsWith("+")) {
+                indicativoSeleccionado = "+" + indicativoSeleccionado;
+            }
+  
+            // 📌 Fusionner l'indicatif et le numéro
+            const numeroCompleto = indicativoSeleccionado + numero;
+            formData.set("whatsapp", numeroCompleto);
+            formData.delete("manualIndicativo"); // Supprimer le champ inutile
+  
+            console.log("📞 Número enviado al backend:", numeroCompleto);
+  
+            // 📌 Masquer immédiatement le formulaire avec effet
             formContainer.style.opacity = "0";
             formContainer.style.transform = "translateY(-20px)";
             setTimeout(() => {
                 formContainer.style.display = "none";
             }, 500);
   
-            // 📌 Afficher un message de confirmation immédiatement
+            // 📌 Affichage du message de confirmation
             const mensajeFelicitacion = document.createElement("div");
             mensajeFelicitacion.innerHTML = `
                 <h2>🎉 ¡Felicidades, ${formData.get("nombre_comercio")}! 🚀</h2>
@@ -337,7 +355,6 @@
                 console.error("❌ Error al enviar la solicitud:", error);
             });
         });
-  
     });
   </script>
 </body>
