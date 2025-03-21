@@ -157,33 +157,31 @@
   <script>
     document.addEventListener("DOMContentLoaded", function() {
   
-        // 📌 Gestion du bouton pour afficher/masquer le formulaire
-        document.addEventListener("DOMContentLoaded", function() {
-            const btnProbarGratis = document.getElementById("probarGratisBtn");
-            const formContainer = document.getElementById("pruebaGratisForm");
-      
-            btnProbarGratis.addEventListener("click", function() {
-                if (formContainer.style.display === "none" || formContainer.style.opacity === "0") {
-                    // 📌 Afficher le formulaire avec une animation fluide
-                    formContainer.style.display = "block";
-                    setTimeout(() => {
-                        formContainer.style.opacity = "1";
-                        formContainer.style.transform = "translateY(0px)";
-                    }, 50);
-      
-                    // 📌 Faire défiler l'écran jusqu'au formulaire
-                    formContainer.scrollIntoView({ behavior: "smooth" });
-      
-                    // 📌 Cacher le bouton après ouverture
-                    btnProbarGratis.style.display = "none";
-                }
-            });
-      
-            // 📌 Initialisation du formulaire caché avec animation fluide
-            formContainer.style.display = "none";
-            formContainer.style.opacity = "0";
-            formContainer.style.transition = "opacity 0.5s ease, transform 0.5s ease";
-            formContainer.style.transform = "translateY(-20px)";
+        // 📌 Récupération des éléments HTML
+        const btnProbarGratis = document.getElementById("probarGratisBtn");
+        const formContainer = document.getElementById("pruebaGratisForm");
+  
+        // 📌 Initialisation du formulaire caché avec animation fluide
+        formContainer.style.display = "none";
+        formContainer.style.opacity = "0";
+        formContainer.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+        formContainer.style.transform = "translateY(-20px)";
+  
+        // 📌 Gestion du bouton pour afficher le formulaire en douceur
+        btnProbarGratis.addEventListener("click", function() {
+            if (formContainer.style.display === "none") {
+                formContainer.style.display = "block";
+                setTimeout(() => {
+                    formContainer.style.opacity = "1";
+                    formContainer.style.transform = "translateY(0px)";
+                }, 50);
+  
+                // 📌 Faire défiler l'écran jusqu'au formulaire
+                formContainer.scrollIntoView({ behavior: "smooth" });
+  
+                // 📌 Cacher le bouton après ouverture
+                btnProbarGratis.style.display = "none";
+            }
         });
   
         // 📌 Gestion de la soumission du formulaire
@@ -198,17 +196,21 @@
   
             // 📌 Vérifier si l'indicatif commence par "+"
             if (!indicativo.startsWith("+")) {
-                indicativo = "+" + indicativo; // Ajoute le "+" si absent
+                indicativo = "+" + indicativo;
             }
   
             // 📌 Fusionner les deux pour obtenir un numéro complet
             const numeroCompleto = indicativo + numero;
-            formData.set("whatsapp", numeroCompleto); // Envoie au backend sous "whatsapp"
-            formData.delete("indicativo"); // Supprimer le champ "indicativo" (inutile pour le backend)
-            formData.delete("numero"); // Supprimer le champ "numero" (inutile pour le backend)
+            formData.set("whatsapp", numeroCompleto);
+            formData.delete("indicativo");
+            formData.delete("numero");
   
             // 📌 Masquer immédiatement le formulaire
-            document.getElementById("pruebaGratisForm").style.display = "none";
+            formContainer.style.opacity = "0";
+            formContainer.style.transform = "translateY(-20px)";
+            setTimeout(() => {
+                formContainer.style.display = "none";
+            }, 500);
   
             // 📌 Afficher un message de confirmation immédiatement
             const mensajeFelicitacion = document.createElement("div");
@@ -239,6 +241,7 @@
                 console.error("❌ Error al enviar la solicitud:", error);
             });
         });
+  
     });
   </script>
 </body>
