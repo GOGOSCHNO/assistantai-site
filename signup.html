@@ -102,27 +102,29 @@
               style="max-width: 100%; height: auto; cursor: pointer;">
     </a>
   </header>
-  <div class="form-container">
-    <h2>Crear una cuenta</h2>
-    <form id="signup-form">
-      <label for="name">Nombre completo</label>
-      <input type="text" id="name" name="name" required />
-
-      <label for="email">Correo electrónico</label>
-      <input type="email" id="email" name="email" required />
-
-      <label for="password">Contraseña</label>
-      <input type="password" id="password" name="password" required />
-
-      <button type="submit" class="btn">Crear cuenta</button>
-    </form>
-
-    <button onclick="location.href='/auth/google'" class="btn google-btn">Registrarse con Google</button>
-
-    <div class="link">
-      ¿Ya tienes una cuenta? <a href="login.html">Inicia sesión</a>
+  <main>
+    <div class="form-container">
+      <h2>Crear una cuenta</h2>
+      <form id="signup-form">
+        <label for="name">Nombre completo</label>
+        <input type="text" id="name" name="name" required />
+  
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" required />
+  
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" required />
+  
+        <button type="submit" class="btn">Crear cuenta</button>
+      </form>
+  
+      <button onclick="location.href='/auth/google'" class="btn google-btn">Registrarse con Google</button>
+  
+      <div class="link">
+        ¿Ya tienes una cuenta? <a href="login.html">Inicia sesión</a>
+      </div>
     </div>
-  </div>
+  </main>
 
   <script>
     document.getElementById("signup-form").addEventListener("submit", async function (e) {
