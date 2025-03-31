@@ -100,24 +100,26 @@
               style="max-width: 100%; height: auto; cursor: pointer;">
     </a>
   </header>
-  <div class="form-container">
-    <h2>Iniciar sesión</h2>
-    <form id="login-form">
-      <label for="email">Correo electrónico</label>
-      <input type="email" id="email" name="email" required />
-
-      <label for="password">Contraseña</label>
-      <input type="password" id="password" name="password" required />
-
-      <button type="submit" class="btn">Ingresar</button>
-    </form>
-
-    <button onclick="location.href='/auth/google'" class="btn google-btn">Ingresar con Google</button>
-
-    <div class="link">
-      ¿No tienes una cuenta? <a href="signup.html">Crear una cuenta</a>
+  <main>
+    <div class="form-container">
+      <h2>Iniciar sesión</h2>
+      <form id="login-form">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" required />
+  
+        <label for="password">Contraseña</label>
+        <input type="password" id="password" name="password" required />
+  
+        <button type="submit" class="btn">Ingresar</button>
+      </form>
+  
+      <button onclick="location.href='/auth/google'" class="btn google-btn">Ingresar con Google</button>
+  
+      <div class="link">
+        ¿No tienes una cuenta? <a href="signup.html">Crear una cuenta</a>
+      </div>
     </div>
-  </div>
+  </main>
 
   <script>
     document.getElementById("login-form").addEventListener("submit", async function (e) {
