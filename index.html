@@ -356,6 +356,7 @@
                 console.error("❌ Error al enviar la solicitud:", error);
             });
         });
+    });
         async function loadUserName() {
           try {
             const res = await fetch("https://bossassistantai-439c88409c33.herokuapp.com/api/me", {
@@ -371,7 +372,6 @@
         }
       
         loadUserName();
-    });
   </script>
 </body>
 </html>
